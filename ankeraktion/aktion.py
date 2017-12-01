@@ -5,6 +5,7 @@ this script helps you find cheap anker beer
 
 import requests
 import argparse
+import json
 import sys
 
 # default urls to search for anker beer
@@ -24,6 +25,12 @@ def cli_args_parser():
         dest='url',
         help="url for Anker request"
     )
+    parser.add_argument(
+        '-r',
+        choices=['html', 'json'],
+        default='html',
+        dest='request_type'
+    )
     return parser.parse_args()
 
 def get_html(urls):
@@ -41,6 +48,10 @@ def get_html(urls):
     except requests.exceptions.RequestException as err:
         print(err)
         sys.exit(1)
+
+def get_json(urls):
+    """ get information from json source """
+    pass
 
 def beer_check(content):
     """ check for anker """
